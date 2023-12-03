@@ -1,0 +1,27 @@
+  <!DOCTYPE html>
+<html>
+<head>
+<title>Hello!</title>
+</head>
+<body>
+
+<h1>This page says hello!</h1>
+    <form>
+  <label for="fname">So what's your name?</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <button onclick="sayhello()">Hi</button>
+<br>
+<h2 id="hello"></h2>
+<br>
+<a href="INDEX.html">Back to Home Page</a>
+<br>
+<script>
+function sayhello()
+{
+  var name;
+  name = document.getElementById("fname").value;
+  document.getElementById("hello").innerHTML='Hello ' +name;
+}
+    </script>
+</body>
+</html>

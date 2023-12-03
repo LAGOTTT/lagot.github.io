@@ -1,0 +1,35 @@
+   <!DOCTYPE html>
+<html>
+<head>
+<title>Distance Conversion</title>
+</head>
+<body>
+    <h1>Distance Converter</h1>
+    <br>
+    <h3>This page converts Meters to Feet and vice versa.</h3>
+    <br>
+    <input id="m" name="m" type="number" onkeyup="mtof()">
+    <label for="m">Meters  to </label> 
+    <label for="f"> Feet</label> 
+    <input id="f" name="f" type="number" onkeyup="ftom()">
+    <br>
+    <br>
+   
+    <a href="INDEX.html">Back to Home Page</a>
+<script>
+    function mtof(){
+
+    var meters = document.getElementById("m").value;
+    var feet = meters * 3.28084;
+    document.getElementById("f").value = feet;
+    }
+
+    function ftom(){
+
+    var feet = document.getElementById("f").value;
+    var meters = feet / 3.28084;
+    document.getElementById("m").value = meters;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Average of First 'n' Natural Numbers</title>
+</head>
+<body>
+    <h1>Average of First 'n' Natural Numbers</h1>
+    <br>
+    <h3>This page calculates the average of the first 'n' natural numbers using a for loop.</h3>
+    <br>
+    <label for="n">Enter a number (n):</label> 
+    <input id="n" name="n" type="number" oninput="calculateAverage()">
+    <br>
+    <label for="result">Average:</label>
+    <input id="result" name="result" type="number" readonly>
+    <br>
+    <br>
+    <a href="INDEX.html">Back to Home Page</a>
+
+    <script>
+        function calculateAverage() {
+            var n = document.getElementById("n").value;
+
+            if (Number.isInteger(+n) && +n >= 0) {
+                var sum = 0;
+
+                for (var i = 1; i <= +n; i++) {
+                    sum += i;
+                }
+
+                var average = sum / +n;
+                document.getElementById("result").value = average;
+            }
+        }
+    </script>
+</body>
+</html>

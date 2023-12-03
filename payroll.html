@@ -1,0 +1,205 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Payroll Program</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        td:nth-child(odd) {
+            border: 1px solid #ffffff;
+            background-color: #250140;
+            text-align: left;
+            color: white;
+            padding: 8px;
+        }
+
+        td:nth-child(even) {
+            border: 1px solid #ffffff;
+            background-color: #1f0252;
+            text-align: left;
+            color: white;
+            padding: 8px;
+        }
+
+        th {
+        border: 1px solid #ffffff;
+        background-color: #E1007E;
+        text-align: left;
+        color: white;
+        padding: 8px;
+        }
+
+
+        h3 {
+            text-align:center;
+        }
+        h2 {
+            text-align:center;
+        }
+
+        #footer{
+            grid-row-start:20;
+            grid-row-end:25;
+            grid-column-start:1;
+            grid-column-end:8;
+        }
+
+        box {
+            grid-row-start:2;
+            grid-row-end:20;
+            grid-column-start:5;
+            grid-column-end:8;
+            padding-left:10px;
+            width:2000px;
+            height:1000px;
+            border-top:solid 2px;
+            border-left:solid 2px;      
+            border-bottom:solid 2px;
+            border-right:solid 2px;      
+   }
+
+        #header {
+            grid-row-start:1;
+            grid-row-end:5;
+            grid-column-start:1;
+            grid-column-end:8;
+        }
+
+        #pagefooter {
+            text-align:center;
+            color:#ffffff
+        }
+
+        #pageheader {
+            text-align:center;
+            color:#ffffff
+        }
+
+        body {
+            background-image:  url('https://tenor.com/view/purple-space-gif-18483437.gif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            }
+
+    </style>
+</head>
+<body>
+    <div id ="header">
+     <h1 id="pageheader">Payroll Program</h1> 
+    </div>
+
+    <label style="color:white" for="employeeName">Employee Name:</label>
+    <input type="text" id="employeeName">
+
+    <label style="color:white" for="daysWorked">Days Worked:</label>
+    <input type="number" id="daysWorked">
+
+    <label style="color:white" for="dailyRate">Daily Rate:</label>
+    <input type="number" id="dailyRate">
+
+    <label style="color:white" for="deductionAmount">Deduction Amount:</label>
+    <input type="number" id="deductionAmount">
+
+    <button onclick="addEmployee()">Add Employee</button>
+    <button onclick="deleteEmployee()">Delete Employee</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Employee Name</th>
+                <th>Days Worked</th>
+                <th>Daily Rate</th>
+                <th>Gross Pay</th>
+                <th>Deduction Amount</th>
+                <th>Net Pay</th>
+            </tr>
+        </thead>
+        <tbody id="payrollBody"></tbody>
+        <br>
+        <br>
+        <br>
+
+    </table>
+
+    <div id ="footer">
+      <h3 id="pagefooter">Copyright 2023</h3>
+        <div style="text-align:center">    
+         <a href="INDEX.html" style = "color: white">Back to Home Page</a>
+    </div>
+</div>
+
+    <script>
+        var payrollList = [];
+
+        function addEmployee() {
+            var employeeName = document.getElementById("employeeName").value;
+            var daysWorked = parseFloat(document.getElementById("daysWorked").value);
+            var dailyRate = parseFloat(document.getElementById("dailyRate").value);
+            var deductionAmount = parseFloat(document.getElementById("deductionAmount").value);
+
+            var grossPay = daysWorked * dailyRate;
+            var netPay = grossPay - deductionAmount;
+
+            var payrollEntry = {
+                employeeName: employeeName,
+                daysWorked: daysWorked,
+                dailyRate: dailyRate,
+                grossPay: grossPay,
+                deductionAmount: deductionAmount,
+                netPay: netPay
+            };
+
+            payrollList.push(payrollEntry);
+            displayPayroll();
+        }
+
+        function deleteEmployee() {
+            var lineNumberToDelete = prompt("Enter the Line Number to delete:");
+
+            if (lineNumberToDelete !== null) {
+                var indexToDelete = parseInt(lineNumberToDelete) - 1;
+
+                if (indexToDelete >= 0 && indexToDelete < payrollList.length) {
+                    payrollList.splice(indexToDelete, 1);
+                    displayPayroll();
+                } else {
+                    alert("Invalid Line Number");
+                }
+            }
+        }
+
+        function displayPayroll() {
+            var payrollBody = document.getElementById("payrollBody");
+            payrollBody.innerHTML = "";
+
+            for (var i = 0; i < payrollList.length; i++) {
+                var payrollEntry = payrollList[i];
+
+                var row = payrollBody.insertRow(i);
+                var cellNo = row.insertCell(0);
+                var cellName = row.insertCell(1);
+                var cellDays = row.insertCell(2);
+                var cellRate = row.insertCell(3);
+                var cellGross = row.insertCell(4);
+                var cellDeduction = row.insertCell(5);
+                var cellNet = row.insertCell(6);
+
+                cellNo.innerHTML = i + 1;
+                cellName.innerHTML = payrollEntry.employeeName;
+                cellDays.innerHTML = payrollEntry.daysWorked;
+                cellRate.innerHTML = payrollEntry.dailyRate.toFixed(2);
+                cellGross.innerHTML = '$ ' +  payrollEntry.grossPay.toFixed(2);
+                cellDeduction.innerHTML =  '$ ' + payrollEntry.deductionAmount.toFixed(2);
+                cellNet.innerHTML = '$ ' +  payrollEntry.netPay.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>

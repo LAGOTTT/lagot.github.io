@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum of First 'n' Natural Numbers</title>
+</head>
+<body>
+    <h1>Sum of First 'n' Natural Numbers</h1>
+    <br>
+    <h3>This page calculates the sum of the first 'n' natural numbers using a do-while loop.</h3>
+    <br>
+    <label for="n">Enter a number (n):</label> 
+    <input id="n" name="n" type="number" oninput="calculateSum()">
+    <br>
+    <label for="result">Sum:</label>
+    <input id="result" name="result" type="number" readonly>
+    <br>
+    <br>
+    <a href="INDEX.html">Back to Home Page</a>
+
+    <script>
+        function calculateSum() {
+            var n = document.getElementById("n").value;
+
+            if (Number.isInteger(+n) && +n >= 0) {
+                var sum = 0;
+                var i = 1;
+
+                do {
+                    sum += i;
+                    i++;
+                } while (i <= +n);
+
+                document.getElementById("result").value = sum;
+            }
+        }
+    </script>
+</body>
+</html>

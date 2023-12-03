@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Addition for 2 Numbers</title>
+</head>
+<body>
+    <h1> This Page adds 2 Numbers! </h1>
+    <br>
+    <label for="n1">First Number</label> 
+    <input id="n1" name="n1" type="number" onkeyup="computesum()">
+    <label for="n2">Second Number</label> 
+    <input id="n2" name="n2" type="number" onkeyup="computesum()">
+    <br>
+    <br>
+    <br>
+    <label for="sum" id="sumlabel">Waiting for input...</label> 
+    <br> 
+    <input id="sum" name="sum" type="number" readonly></input></p>
+    <br>
+    <br>
+    <a href="INDEX.html">Back to Home Page</a>
+<script>
+    function computesum(){
+    var a,b;
+
+    a = document.getElementById("n1").value*1;
+    b = document.getElementById("n2").value*1;
+
+    let c  = a+b;
+
+
+    document.getElementById("sumlabel").innerHTML='The sum of '
+    +a+' and '+b+' is:';
+    document.getElementById("sum").value=c;
+    }
+    </script>
+</body>
+</html>

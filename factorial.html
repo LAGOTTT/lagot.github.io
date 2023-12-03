@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factorials of First 'n' Natural Numbers</title>
+</head>
+<body>
+    <h1>Factorials of First 'n' Natural Numbers</h1>
+    <br>
+    <h3>This page calculates factorials of the first 'n' natural numbers using a while loop.</h3>
+    <br>
+    <label for="n">Enter a number (n):</label> 
+    <input id="n" name="n" type="number" oninput="calculateFactorials()">
+    <br>
+    <label for="result">Factorials:</label>
+    <textarea id="result" name="result" rows="10" cols="30" readonly></textarea>
+    <br>
+    <br>
+    <a href="INDEX.html">Back to Home Page</a>
+
+    <script>
+        function calculateFactorials() {
+            var n = document.getElementById("n").value;
+
+            if (Number.isInteger(+n) && +n >= 0) {
+                var result = "";
+                var i = 1;
+                var factorial = 1;
+
+                while (i <= +n) {
+                    factorial *= i;
+                    result += "Factorial of " + i + ": " + factorial + "\n";
+                    i++;
+                }
+
+                document.getElementById("result").value = result;
+            }
+        }
+    </script>
+</body>
+</html>
